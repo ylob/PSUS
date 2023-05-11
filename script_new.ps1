@@ -1,8 +1,5 @@
-#########
-################## ZDE SE MÌNÍ POÈET STRAN
-$pocet_stran = 1                 
-################## ZDE SE MÌNÍ POÈET STRAN
-#########
+$pocet_stran = 1     # ZDE SE MENI POCET STRAN         
+
 
 
 $names = @()
@@ -26,27 +23,27 @@ for($i = 1;$i -le $pages_count; $i += $pocet_stran)
     
     $page_text = Convert-PDFToText -FilePath "$source_script_folder\$pdf_main_name" -Page $i
     
-    $page_text_split = $page_text -split "Èíslo protokolu"
+    $page_text_split = $page_text -split "cislo protokolu"
     
-    $page_text_split = $page_text_split -split "Datum zkoušky"
+    $page_text_split = $page_text_split -split "Datum zkousky"
     
     $name_untrimmed = $page_text_split[1] -replace (" ", "")
     
     $name_trimmed = $name_untrimmed.trim()
 
-    write-host "Pøidávám $name_trimmed do array."
+    write-host "PÃ¸idÃ¡vÃ¡m $name_trimmed do array."
     
     $names += $name_trimmed
 }
 $names = $names -replace("/", "_")
 
-Write-Host "Splitování hl. PDF"
+Write-Host "SplitovÃ¡nÃ­ hl. PDF"
 
 Split-PDF -FilePath "$source_script_folder\$pdf_main_name" -OutputName "" -SplitCount $pocet_stran -OutputFolder $source_script_folder
 
 $created_pdf_count = (gci $source_script_folder | ?{$_.name -notlike "$pdf_main_name" -and $_.name -notlike "Output"}).count
 
-write-host "Poèet PDF - $created_pdf_count"
+write-host "PoÃ¨et PDF - $created_pdf_count"
 
 New-Item -Path "$source_script_folder\Output\" -Name $pdf_out_fold -ItemType "directory"
 
@@ -60,9 +57,9 @@ for($x = 0; $x -le ($created_pdf_count - 1); $x++)
    
    Move-Item -path $origin_path -Destination $destination_path
 
-   write-host "PDF soubor $single_name byl vytvoøen"
+   write-host "PDF soubor $single_name byl vytvoÃ¸en"
 }
 
 copy-Item -path "$source_script_folder\$pdf_main_name" -Destination "$source_script_folder\Output\$pdf_out_fold\$pdf_main_name" -Force
 
-Write-Host "Pùvodní + nové PDF uloženy do "$source_script_folder\Output\$pdf_out_fold""
+Write-Host "PÃ¹vodnÃ­ + novÃ© PDF uloÅ¾eny do "$source_script_folder\Output\$pdf_out_fold""
