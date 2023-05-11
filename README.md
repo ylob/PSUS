@@ -1,5 +1,4 @@
 # PSUS
-PS_scripts
-Můj soubor PS skritpů které se můžou hodit.
+Můj soubor PS a cizojazyčných skritpů které se můžou hodit.
 
-My useful PS scripts repository.
+My useful scripts repository.
