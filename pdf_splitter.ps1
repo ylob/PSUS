@@ -1,5 +1,8 @@
+<# ABOUT
+This PS script splits the PDF file with multiple pages and renames them based on the information on the page.
+Mainly used for multipage PDFs to automate the process.
+#>
 $pocet_stran = 1     # ZDE SE MENI POCET STRAN         
-
 
 
 $names = @()
@@ -23,9 +26,9 @@ for($i = 1;$i -le $pages_count; $i += $pocet_stran)
     
     $page_text = Convert-PDFToText -FilePath "$source_script_folder\$pdf_main_name" -Page $i
     
-    $page_text_split = $page_text -split "cislo protokolu"
+    $page_text_split = $page_text -split "cislo protokolu"          #slovo pred textem dle ktereho se soubor bude prejmenovavat       
     
-    $page_text_split = $page_text_split -split "Datum zkousky"
+    $page_text_split = $page_text_split -split "Datum zkousky"      #slovo za textem 
     
     $name_untrimmed = $page_text_split[1] -replace (" ", "")
     
