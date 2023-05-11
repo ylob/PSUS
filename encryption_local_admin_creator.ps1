@@ -1,4 +1,7 @@
-﻿Write-host "Script pro vytvoreni admin. uctu a smazani stavajiciho"
+#This PS script creates an local user with password that is created by user and deletes the current user from Administrators group
+#e.g. user Tomas is using domain account which has admin rights. After running this script, user Tomas-local will be created and added to Administrators group aswell as his domain account will be deleted from there.
+
+Write-host "Script pro vytvoreni admin. uctu a smazani stavajiciho"
 $creds = Get-Credential -Credential "$env:USERNAME-loc"
 $passwordCheck = Read-Host -AsSecureString "Pro kontrolu zadejte znovu HESLO."
 
