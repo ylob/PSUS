@@ -1,4 +1,4 @@
 # PSUS
-Můj soubor PS a cizojazyčných skritpů které se můžou hodit.
+##soubor užitečných scriptů (mainly ps1)##
 
 My useful scripts repository.
